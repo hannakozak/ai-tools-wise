@@ -1,6 +1,6 @@
 // app/layout.tsx
-import { Header } from './components/Header';
-import { ThemeProvider } from './components/ThemeProvider';
+import { Header } from '../components/Header';
+import { ThemeProvider } from '../components/ThemeProvider';
 import './globals.css';
 
 export const metadata = {

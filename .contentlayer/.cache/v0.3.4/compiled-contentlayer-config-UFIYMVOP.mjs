@@ -13,11 +13,11 @@ var Post = defineDocumentType(() => ({
   }
 }));
 var contentlayer_config_default = makeSource({
-  contentDirPath: "content",
+  contentDirPath: "src/content",
   documentTypes: [Post]
 });
 export {
   Post,
   contentlayer_config_default as default
 };
-//# sourceMappingURL=compiled-contentlayer-config-2A2UCJVZ.mjs.map
+//# sourceMappingURL=compiled-contentlayer-config-UFIYMVOP.mjs.map
