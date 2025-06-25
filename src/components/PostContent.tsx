@@ -19,9 +19,12 @@ export default function PostContent({ post }: PostContentProps) {
 
 	return (
 		<article className="max-w-3xl mx-auto px-6 py-12 prose prose-blue">
-			<h1 className="text-5xl font-bold mb-6">{post.title}</h1>
 			<p className="text-gray-500 text-sm mb-8">
-				{new Date(post.date).toLocaleDateString()}
+				{new Date(post.date).toLocaleDateString('en-US', {
+					year: 'numeric',
+					month: 'long',
+					day: 'numeric',
+				})}
 			</p>
 			<MDXContent components={MDXComponents} />
 		</article>
