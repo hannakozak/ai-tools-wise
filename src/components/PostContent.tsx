@@ -1,32 +1,31 @@
 'use client';
 
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { useMDXComponent } from 'next-contentlayer/hooks';
+import type { Post } from 'contentlayer/generated';
+import { getHeadingsFromMDX, Heading } from '@/helpers/getHeadingsFromMDX';
 import MDXComponents from './MDXComponents';
+import Sidebar from './Sidebar';
 
 interface PostContentProps {
-	post: {
-		title: string;
-		date: string;
-		body: {
-			code: string;
-		};
-	};
+	post: Post;
 }
 
 export default function PostContent({ post }: PostContentProps) {
 	const MDXContent = useMDXComponent(post.body.code);
+	const [headings, setHeadings] = useState<Heading[]>([]);
+
+	useEffect(() => {
+		const result = getHeadingsFromMDX(post.body.raw);
+		setHeadings(result);
+	}, [post.body.raw]);
 
 	return (
-		<article className="max-w-3xl mx-auto px-6 py-12 prose prose-blue">
-			<p className="text-gray-500 text-sm mb-8">
-				{new Date(post.date).toLocaleDateString('en-US', {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric',
-				})}
-			</p>
-			<MDXContent components={MDXComponents} />
-		</article>
+		<div className="flex gap-8 p-10 lg:p-8 max-w-7xl mx-auto">
+			<article className="w-full lg:w-3/4">
+				<MDXContent components={MDXComponents} />
+			</article>
+			<Sidebar headings={headings} />.
+		</div>
 	);
 }

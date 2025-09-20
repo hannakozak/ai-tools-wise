@@ -2,15 +2,50 @@ import React from 'react';
 import PricingTable from './PricingTable';
 
 const MDXComponents = {
-	h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-		<h1 className="text-4xl font-bold my-6" {...props} />
-	),
-	h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-		<h2 className="text-3xl font-semibold my-5" {...props} />
-	),
-	h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-		<h3 className="text-2xl font-semibold my-4" {...props} />
-	),
+	h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+		const id = props.children
+			?.toString()
+			.toLowerCase()
+			.replace(/\s+/g, '-')
+			.replace(/[?!]/g, '');
+		return (
+			<h1
+				id={id}
+				className="text-3xl font-semibold my-5 scroll-mt-24"
+				{...props}
+			/>
+		);
+	},
+
+	h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+		const id = props.children
+			?.toString()
+			.toLowerCase()
+			.replace(/\s+/g, '-')
+			.replace(/[?!]/g, '');
+
+		return (
+			<h2
+				id={id}
+				className="text-3xl font-semibold my-5 scroll-mt-24"
+				{...props}
+			/>
+		);
+	},
+	h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => {
+		const id = props.children
+			?.toString()
+			.toLowerCase()
+			.replace(/\s+/g, '-')
+			.replace(/[?!]/g, '');
+		return (
+			<h3
+				id={id}
+				className="text-3xl font-semibold my-5 scroll-mt-24"
+				{...props}
+			/>
+		);
+	},
 	p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
 		<p className="text-gray-700 leading-relaxed mb-4" {...props} />
 	),

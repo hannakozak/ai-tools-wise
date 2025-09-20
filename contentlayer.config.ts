@@ -1,4 +1,6 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
 
 export const Post = defineDocumentType(() => ({
 	name: 'Post',
@@ -11,9 +13,18 @@ export const Post = defineDocumentType(() => ({
 		date: { type: 'date', required: true },
 		layout: { type: 'string', required: false },
 	},
+	computedFields: {
+		url: {
+			type: 'string',
+			resolve: (post) => `/posts/${post.slug}`,
+		},
+	},
 }));
 
 export default makeSource({
 	contentDirPath: 'src/content',
 	documentTypes: [Post],
+	mdx: {
+		rehypePlugins: [rehypeSlug, rehypeAutolinkHeadings],
+	},
 });

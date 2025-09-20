@@ -18,7 +18,7 @@ export default function BlogPage() {
 								{post.title}
 							</h2>
 						</Link>
-						<p className="text-gray-600 text-sm">{post.date}</p>
+
 						<p className="text-gray-700">{post.description}</p>
 					</li>
 				))}

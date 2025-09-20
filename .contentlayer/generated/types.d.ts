@@ -20,7 +20,7 @@ export type Post = {
   layout?: string | undefined
   /** MDX file body */
   body: MDX
-
+  url: string
 }  
 
 /** Nested types */
