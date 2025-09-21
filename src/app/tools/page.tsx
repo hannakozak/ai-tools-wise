@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, ExternalLink, Star } from 'lucide-react';
-import { ai_tools } from '@/content/tools/tools-list';
+import { ai_tools } from '../../content/tools/tools-list';
 
-export default function AiToolsShowcase({ className = '' }) {
+export default function AiToolsShowcase() {
 	const [query, setQuery] = useState('');
 	const [filter, setFilter] = useState('all');
 
@@ -20,7 +20,7 @@ export default function AiToolsShowcase({ className = '' }) {
 	});
 
 	return (
-		<section className={`prose prose-slate mx-auto px-4 py-10 ${className}`}>
+		<section className={`prose prose-slate mx-auto px-4 py-10 `}>
 			<div className="max-w-4xl mx-auto text-center">
 				<motion.h1
 					initial={{ opacity: 0, y: -8 }}
