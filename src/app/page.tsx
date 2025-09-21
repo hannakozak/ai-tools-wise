@@ -15,7 +15,7 @@ export default function HomePage() {
 					Discover AI tools for creators, freelancers, and solopreneurs.
 				</p>
 				<a
-					href="#tools"
+					href="/tools"
 					className="inline-block bg-blue-600 text-white px-6 py-3 rounded-xl text-lg hover:bg-blue-700 transition"
 				>
 					Browse Tools
