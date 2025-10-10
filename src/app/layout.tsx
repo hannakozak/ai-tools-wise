@@ -2,6 +2,7 @@ import { Header } from '../components/Header';
 import { ThemeProvider } from '../components/ThemeProvider';
 import './globals.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
 	title: 'AI Tools Stack',
@@ -20,6 +21,7 @@ export default function RootLayout({
 					<Header />
 					{children}
 					<GoogleAnalytics gaId="G-EJ8FK97NXL" />
+					<Analytics />
 				</ThemeProvider>
 			</body>
 		</html>
