@@ -1,7 +1,7 @@
-// app/layout.tsx
 import { Header } from '../components/Header';
 import { ThemeProvider } from '../components/ThemeProvider';
 import './globals.css';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
 	title: 'AI Tools Stack',
@@ -19,6 +19,7 @@ export default function RootLayout({
 				<ThemeProvider>
 					<Header />
 					{children}
+					<GoogleAnalytics gaId="G-EJ8FK97NXL" />
 				</ThemeProvider>
 			</body>
 		</html>
