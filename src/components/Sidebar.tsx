@@ -1,66 +1,75 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import clsx from 'clsx';
+import { useEffect } from 'react';
+import Link from 'next/link';
+import { X, Wrench, BookOpen, FileText, Layers } from 'lucide-react';
+import { useSidebar } from '@/contexts/SidebarContext';
 
-type Heading = {
-	id: string;
-	text: string;
-	level: number;
-};
+const navItems = [
+	{ label: 'Tools', href: '/tools', icon: Wrench },
+	{ label: 'Courses', href: '/courses', icon: BookOpen },
+	{ label: 'Articles', href: '/articles', icon: FileText },
+	{ label: 'Topics', href: '/topics', icon: Layers },
+];
 
-interface SidebarProps {
-	headings: Heading[];
-}
-
-export default function Sidebar({ headings }: SidebarProps) {
-	const [activeId, setActiveId] = useState<string>('');
+export default function Sidebar() {
+	const { open, setOpen } = useSidebar();
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const visible = entries.find((entry) => entry.isIntersecting);
-				if (visible?.target?.id) {
-					setActiveId(visible.target.id);
-				}
-			},
-			{
-				rootMargin: '0% 0% -80% 0%',
-				threshold: 0.1,
-			}
-		);
-
-		const headingElements = document.querySelectorAll('h1, h2, h3');
-
-		headingElements.forEach((el) => observer.observe(el));
-
+		document.body.style.overflow = open ? 'hidden' : '';
 		return () => {
-			headingElements.forEach((el) => observer.unobserve(el));
+			document.body.style.overflow = '';
 		};
+	}, [open]);
+
+	useEffect(() => {
+		const handler = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
+		window.addEventListener('keydown', handler);
+		return () => window.removeEventListener('keydown', handler);
 	}, []);
 
 	return (
-		<aside className="sticky top-20 max-h-[80vh] overflow-auto pr-4">
-			<ul className="space-y-2 text-sm">
-				{headings.map((heading) => (
-					<li
-						key={heading.id}
-						className={clsx(`ml-${(heading.level - 1) * 4}`)}
-					>
-						<a
-							href={`#${heading.id}`}
-							className={clsx(
-								'block transition-colors hover:text-blue-500',
-								activeId === heading.id
-									? 'text-blue-600 font-bold'
-									: 'text-gray-500'
-							)}
-						>
-							{heading.text}
-						</a>
-					</li>
-				))}
-			</ul>
-		</aside>
+		<>
+			{open && (
+				<div
+					className="fixed inset-0 bg-black/40 z-40 lg:hidden"
+					onClick={() => setOpen(false)}
+					aria-hidden="true"
+				/>
+			)}
+
+			<aside
+				aria-label="Sidebar navigation"
+				className={`
+          fixed lg:static z-50 top-0 left-0 h-full w-64
+          bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 p-5
+          transform transition-transform duration-300
+          ${open ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
+        `}
+			>
+				<div className="flex items-center justify-between mb-6 lg:hidden">
+					<span className="font-semibold">Menu</span>
+					<button onClick={() => setOpen(false)} aria-label="Close menu">
+						<X size={20} />
+					</button>
+				</div>
+				<nav className="space-y-2">
+					{navItems.map((item) => {
+						const Icon = item.icon;
+						return (
+							<Link
+								key={item.href}
+								href={item.href}
+								onClick={() => setOpen(false)}
+								className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+							>
+								<Icon size={18} />
+								<span>{item.label}</span>
+							</Link>
+						);
+					})}
+				</nav>
+			</aside>
+		</>
 	);
 }
