@@ -5,7 +5,6 @@ import { useMDXComponent } from 'next-contentlayer/hooks';
 import type { Post } from 'contentlayer/generated';
 import { getHeadingsFromMDX, Heading } from '@/helpers/getHeadingsFromMDX';
 import MDXComponents from './MDXComponents';
-import Sidebar from './Sidebar';
 
 interface PostContentProps {
 	post: Post;
@@ -25,7 +24,6 @@ export default function PostContent({ post }: PostContentProps) {
 			<article className="w-full lg:w-3/4">
 				<MDXContent components={MDXComponents} />
 			</article>
-			<Sidebar headings={headings} />.
 		</div>
 	);
 }
