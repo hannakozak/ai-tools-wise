@@ -96,22 +96,26 @@ export function BrowseSection() {
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true }}
-				className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+				className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch"
 			>
 				{navCards.map((card) => {
 					const Icon = card.icon;
 					return (
-						<motion.div key={card.href} variants={cardVariants}>
+						<motion.div
+							key={card.href}
+							variants={cardVariants}
+							className="h-full"
+						>
 							<Link
 								href={card.href}
-								className="group flex flex-col gap-4 p-6 rounded-2xl bg-white dark:bg-gray-900 border border-slate-100 dark:border-gray-800 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-200"
+								className="group flex flex-col gap-4 p-6 rounded-2xl bg-white dark:bg-gray-900 border border-slate-100 dark:border-gray-800 shadow-md hover:shadow-lg hover:-translate-y-1 transition-all duration-200 h-full"
 							>
 								<div
 									className={`w-10 h-10 rounded-xl flex items-center justify-center ${card.bg}`}
 								>
 									<Icon size={18} className={card.iconColor} />
 								</div>
-								<div>
+								<div className="flex-1">
 									<div className="font-semibold text-gray-900 dark:text-gray-100 mb-1 flex items-center gap-2">
 										{card.label}
 										<ArrowRight
