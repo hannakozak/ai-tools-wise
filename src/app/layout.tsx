@@ -2,6 +2,7 @@ import Sidebar from '@/components/Sidebar';
 import { Header } from '../components/Header';
 import { ThemeProvider } from '../components/ThemeProvider';
 import { SidebarProvider } from '@/contexts/SidebarContext';
+import { Footer } from '@/components/Footer';
 import './globals.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/next';
@@ -9,7 +10,7 @@ import { Analytics } from '@vercel/analytics/next';
 export const metadata = {
 	title: 'AI Wise - Curated AI Tools, Resources, and Tutorials',
 	description:
-		'AI Tools Stack - Curated list of AI tools, resources, and tutorials to learn and explore the world of artificial intelligence. Discover the best AI tools for your projects and stay updated with the latest trends in AI technology.',
+		'Curated AI tools, courses and articles for creators, freelancers and developers. Find the best AI tools, learn from world-class courses and stay updated with the latest in AI.',
 };
 
 export default function RootLayout({
@@ -19,16 +20,19 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+			<body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-hidden h-screen">
 				<ThemeProvider>
 					<SidebarProvider>
 						<div className="fixed top-0 left-0 right-0 z-50">
 							<Header />
 						</div>
-						<div className="pt-16 flex h-[calc(100vh-4rem)]">
+
+						<div className="flex h-screen pt-16">
 							<Sidebar />
-							<main className="flex-1 h-full overflow-y-auto p-6">
+
+							<main className="flex-1 overflow-y-auto">
 								{children}
+								<Footer />
 							</main>
 						</div>
 					</SidebarProvider>
