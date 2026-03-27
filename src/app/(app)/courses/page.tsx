@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { motion, useInView } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { ExternalLink, CheckCircle2, XCircle, BookOpen } from 'lucide-react';
-import { ai_courses } from '../../content/courses/ai-courses';
+import { ai_courses } from '../../../content/courses/ai-courses';
 
 type Course = {
 	id: string;

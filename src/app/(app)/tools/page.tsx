@@ -11,7 +11,7 @@ import {
 	Wrench,
 	Search,
 } from 'lucide-react';
-import { ai_tools } from '../../content/tools/tools-list';
+import { ai_tools } from '../../../content/tools/tools-list';
 
 type Tool = {
 	id: string;

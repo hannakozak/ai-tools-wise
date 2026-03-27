@@ -5,6 +5,7 @@ import { FeaturedToolsSection } from '@/components/home/FeaturedToolsSection';
 import { WhySection } from '@/components/home/WhySection';
 import { LatestArticlesSection } from '@/components/home/LatestArticlesSection';
 import { CtaBanner } from '@/components/home/CtaBanner';
+import { Footer } from '@/components/Footer';
 
 export default function HomePage(): ReactElement {
 	return (
@@ -15,6 +16,7 @@ export default function HomePage(): ReactElement {
 			<WhySection />
 			<LatestArticlesSection />
 			<CtaBanner />
+			<Footer />
 		</div>
 	);
 }

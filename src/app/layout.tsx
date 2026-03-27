@@ -1,8 +1,6 @@
-import Sidebar from '@/components/Sidebar';
-import { Header } from '../components/Header';
-import { ThemeProvider } from '../components/ThemeProvider';
+import { Header } from '@/components/Header';
+import { ThemeProvider } from '@/components/ThemeProvider';
 import { SidebarProvider } from '@/contexts/SidebarContext';
-import { Footer } from '@/components/Footer';
 import './globals.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { Analytics } from '@vercel/analytics/next';
@@ -20,21 +18,13 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 overflow-hidden h-screen">
+			<body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
 				<ThemeProvider>
 					<SidebarProvider>
 						<div className="fixed top-0 left-0 right-0 z-50">
 							<Header />
 						</div>
-
-						<div className="flex h-screen pt-16">
-							<Sidebar />
-
-							<main className="flex-1 overflow-y-auto">
-								{children}
-								<Footer />
-							</main>
-						</div>
+						<div className="pt-16">{children}</div>
 					</SidebarProvider>
 				</ThemeProvider>
 
